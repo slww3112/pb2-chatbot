@@ -1,175 +1,134 @@
-body{
-    background-color: #f4f7f6;
-    margin-top:20px;
-}
-.card {
-    background: #fff;
-    transition: .5s;
-    border: 0;
-    margin-bottom: 30px;
-    border-radius: .55rem;
-    position: relative;
-    width: 100%;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
 }
 
-.chat-app .chat {
-    margin-left: 280px;
-    border-left: 1px solid #eaeaea
-}
-
-.chat .chat-history {
+.chat-container {
+    width: 80%;
+    max-width: 600px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
     padding: 20px;
-    border-bottom: 2px solid #fff
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
 }
 
-.chat .chat-history ul {
-    padding: 0
+.chat-output {
+    height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
-.chat .chat-history ul li {
-    list-style: none;
-    margin-bottom: 30px
+.input-container {
+    display: flex;
 }
 
-.chat .chat-history ul li:last-child {
-    margin-bottom: 0px
+input {
+    flex-grow: 1;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
 }
 
-.chat .chat-history .message-data {
-    margin-bottom: 15px
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.chat .chat-history .message-data img {
-    border-radius: 40px;
-    width: 40px
+button:hover {
+    background-color: #0056b3;
 }
 
-.chat .chat-history .message-data-time {
-    color: #434651;
-    padding-left: 6px
-}
-
-.chat .chat-history .message {
-    color: #444;
-    padding: 18px 20px;
-    line-height: 26px;
-    font-size: 16px;
-    border-radius: 7px;
+/* Customize user and chatbot messages */
+.user-message {
+    background-color: #e9ecef;
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 8px;
     display: inline-block;
-    position: relative
+    max-width: 80%;
+    word-wrap: break-word;
 }
 
-.chat .chat-history .message:after {
-    bottom: 100%;
-    left: 7%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-bottom-color: #fff;
-    border-width: 10px;
-    margin-left: -10px
+.chatbot-message {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    max-width: 80%;
+    word-wrap: break-word;
 }
 
-.chat .chat-history .my-message {
-    background: #efefef
+/* Dark mode styles */
+.dark-mode {
+    background-color: #222;
 }
 
-.chat .chat-history .my-message:after {
-    bottom: 100%;
-    left: 30px;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-bottom-color: #efefef;
-    border-width: 10px;
-    margin-left: -10px
+.dark-mode .chat-container {
+    background-color: #333;
+    border-color: #444;
 }
 
-.chat .chat-history .other-message {
-    background: #e8f1f3;
-    text-align: right
+.dark-mode .chat-output {
+    background-color: #333;
+    border-color: #444;
+    color: #ccc;
 }
 
-.chat .chat-history .other-message:after {
-    border-bottom-color: #e8f1f3;
-    left: 93%
+.dark-mode input {
+    background-color: #444;
+    border-color: #555;
+    color: #ccc;
 }
 
-.chat .chat-message {
-    padding: 20px
+.dark-mode .user-message {
+    background-color: #555;
 }
 
-.online,
-.offline,
-.me {
-    margin-right: 2px;
-    font-size: 8px;
-    vertical-align: middle
+.dark-mode .chatbot-message {
+    background-color: #007bff;
 }
 
-.online {
-    color: #86c541
+.dark-mode button {
+    background-color: #0069d9;
+    color: white;
 }
 
-.offline {
-    color: #e47297
+.dark-mode button:hover {
+    background-color: #004c9f;
 }
 
-.me {
-    color: #1d8ecd
-}
-
-.float-right {
-    float: right
-}
-
-.clearfix:after {
-    visibility: hidden;
+/* Add this style to the end of your styles.css file */
+.dark-mode-toggle {
+    background-color: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
     display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0
+    margin: 0 auto 20px;
 }
 
-@media only screen and (max-width: 767px) {
-    .chat-app {
-        height: 465px;
-        width: 100%;
-        overflow-x: auto;
-        background: #fff;
-        left: -400px;
-        display: none
-    }
-    .chat-app .chat {
-        margin: 0
-    }
-    .chat-app .chat {
-        border-radius: 0.55rem 0.55rem 0 0
-    }
-    .chat-app .chat-history {
-        height: 300px;
-        overflow-x: auto
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 992px) {
-    .chat-app .chat-history {
-        height: 600px;
-        overflow-x: auto
-    }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
-    .chat-app .chat-history {
-        height: calc(100vh - 350px);
-        overflow-x: auto
-    }
+.dark-mode-toggle:hover {
+    background-color: #007bff;
+    color: white;
 }
