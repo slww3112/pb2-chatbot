@@ -1,3 +1,24 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyDvsbSgcc0GVG5qiJz_6onO3ZtKx6AT0YE",
+    authDomain: "bhh-chatbot.firebaseapp.com",
+    databaseURL: "https://bhh-chatbot-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "bhh-chatbot",
+    storageBucket: "bhh-chatbot.appspot.com",
+    messagingSenderId: "462999270066",
+    appId: "1:462999270066:web:e54f69725a1064feaacfab",
+    measurementId: "G-25LXV3YTB7"
+};
+
+const darkModeToggle = document.getElementById("toggle-dark-mode");
+
+darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+});
+
+
+// init firebase
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 const chatOutput = document.getElementById("chat-output");
 const chatInput = document.getElementById("chat-input");
 const sendBtn = document.getElementById("send-btn");
@@ -28,17 +49,50 @@ function addMessageToChat(sender, message) {
 }
 
 
-function processUserMessage(message) {
-    // Implement your chatbot logic here or call an API to get the response
-    const response = `You said: ${message}`; // Placeholder response
-    setTimeout(() => {
-        addMessageToChat("Chatbot", response);
-    }, 1000);
-}
-const darkModeToggle = document.getElementById("toggle-dark-mode");
+async function processUserMessage(message) {
+    const messageRef = firebase.database().ref("messages");
+    const newMessageRef = messageRef.push();
+    await newMessageRef.set({
+        sender: "User",
+        message: message,
+        timestamp: Date.now(),
+    });
 
-darkModeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
+    // bsp chatbot response
+    const response = `You said: ${message}`; // Placeholder response
+
+    const newResponseRef = messageRef.push();
+    await newResponseRef.set({
+        sender: "Chatbot",
+        message: response,
+        timestamp: Date.now(),
+    });
+
+    addMessageToChat("Chatbot", response);
+}
+/*
+function loadChatHistory() {
+    const messagesRef = firebase.database().ref("messages");
+
+    // Remove any existing listeners
+    messagesRef.off("value");
+
+    messagesRef.on("value", (snapshot) => {
+        const data = snapshot.val();
+        chatOutput.innerHTML = ""; // Clear the chat output
+        for (const key in data) {
+            const messageData = data[key];
+            addMessageToChat(messageData.sender, messageData.message);
+        }
+    });
+}
+
+loadChatHistory();
+*/
+
+
+
+
+
 
 
