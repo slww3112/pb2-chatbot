@@ -117,7 +117,7 @@ async function processUserMessage(message, chatId) {
         sender: "User",
         message: message,
         timestamp: getFormattedDateAndTime(),
-    });*/
+    });
 
     const response = generateChatbotResponse(message);
 
