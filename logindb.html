@@ -26,14 +26,6 @@
     measurementId: "G-25LXV3YTB7"
   };
   firebase.initializeApp(firebaseConfig);
-  window.checkFirebaseConnection = function () {
-    return new Promise((resolve) => {
-      const checkConnection = firebase.database().ref(".info/connected");
-      checkConnection.on("value", (snap) => {
-        resolve(snap.val());
-      });
-    });
-  };
 </script>
 <main>
   <section class="login-form">
