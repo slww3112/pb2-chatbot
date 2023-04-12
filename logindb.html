@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="db_viewer_style.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <title>Firebase DbVisualizer</title>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">DbVisualizer</div>
+  </nav>
+</header>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDvsbSgcc0GVG5qiJz_6onO3ZtKx6AT0YE",
+    authDomain: "bhh-chatbot.firebaseapp.com",
+    databaseURL: "https://bhh-chatbot-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "bhh-chatbot",
+    storageBucket: "bhh-chatbot.appspot.com",
+    messagingSenderId: "462999270066",
+    appId: "1:462999270066:web:e54f69725a1064feaacfab",
+    measurementId: "G-25LXV3YTB7"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+<main>
+  <section class="login-form">
+    <h1>Login</h1>
+    <form id="login-form">
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+      <button type="submit">Login</button>
+      <div class="login-error"></div>
+    </form>
+  </section>
+</main>
+<script src="login.js"></script>
+</body>
+</html>

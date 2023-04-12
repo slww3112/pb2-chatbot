@@ -1,0 +1,106 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* DbVisualizer styles */
+.node {
+    position: relative;
+    margin-left: 20px;
+}
+
+.node-header {
+    background-color: #333;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.node-children {
+    margin-left: 20px;
+}
+
+/* Transitions */
+.node-header,
+.node-children {
+    transition: all 0.3s ease;
+}
+
+.node-children {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.node-children.expanded {
+    max-height: 1000px;
+}
+.node {
+    position: relative;
+    margin-left: 40px;
+}
+
+.node::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    width: 20px;
+    height: 2px;
+    background-color: #333;
+}
+
+.node::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    width: 2px;
+    height: 100%;
+    background-color: #333;
+}
+
+.node:first-child::before {
+    width: 0;
+}
+
+.node:last-child::after {
+    height: 50%;
+}

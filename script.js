@@ -109,8 +109,9 @@ function getFormattedDateAndTime() {
 
     return `${formattedDate} ${formattedTime}`;
 }
-async function processUserMessage(message) {
-    /*const messageRef = firebase.database().ref("messages");
+
+async function processUserMessage(message, chatId) {
+    const messageRef = firebase.database().ref(`chats/${chatId}/messages`);
     const newMessageRef = messageRef.push();
     await newMessageRef.set({
         sender: "User",
@@ -118,7 +119,6 @@ async function processUserMessage(message) {
         timestamp: getFormattedDateAndTime(),
     });*/
 
-    // Use the generateChatbotResponse function to get a response
     const response = generateChatbotResponse(message);
 
     /*const newResponseRef = messageRef.push();
@@ -130,6 +130,7 @@ async function processUserMessage(message) {
 
     addMessageToChat("Chatbot", response);
 }
+
 
 /*
 function loadChatHistory() {
