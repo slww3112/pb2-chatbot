@@ -38,6 +38,11 @@ input {
     padding: 10px;
 }
 
+.header {
+    color: #888;
+    margin-bottom: 15px;
+}
+
 button {
     background-color: #007bff;
     color: white;
@@ -58,10 +63,13 @@ button:hover {
     background-color: #e9ecef;
     border-radius: 10px;
     padding: 8px;
+    margin-left: auto;
+    margin-right: 0;
     margin-bottom: 8px;
-    display: inline-block;
+    width: fit-content;
     max-width: 80%;
     word-wrap: break-word;
+    position: relative;
 }
 
 .chatbot-message {
@@ -103,6 +111,10 @@ button:hover {
 
 .dark-mode .chatbot-message {
     background-color: #007bff;
+}
+
+.dark-mode .header {
+    color: #ccc;
 }
 
 .dark-mode button {

@@ -63,7 +63,22 @@ function generateChatbotResponse(message) {
         response = "I'm a simple chatbot. How can I assist you?";
     } else if (message.includes('thank you')) {
         response = "You're welcome! Let me know if you have any more questions.";
-    } else {
+    } else if (message.includes('yes')) {
+        let messages = document.getElementsByClassName('chatbot-message')
+        if (messages[messages.length-1]) {
+            if (messages[messages.length-1].innerText === "It seems as though I am not able to help you. Do you want human assistance?"){
+                return `You can contact us via mail to customers@bugland.com, or during our office hours at +49401234567. You
+                    can find our office hours and further information <a href="https://bugland.com/customer-service">here</a>.`
+            }
+        }
+        response = "I'm not sure how to respond to that. Can you please rephrase your question?";
+    }else {
+        let messages = document.getElementsByClassName('chatbot-message')
+        if (messages[messages.length-1]) {
+            if (messages[messages.length-1].innerText === "I'm not sure how to respond to that. Can you please rephrase your question?"){
+                return "It seems as though I am not able to help you. Do you want human assistance?"
+            }
+        }
         response = "I'm not sure how to respond to that. Can you please rephrase your question?";
     }
 
@@ -95,23 +110,23 @@ function getFormattedDateAndTime() {
     return `${formattedDate} ${formattedTime}`;
 }
 async function processUserMessage(message) {
-    const messageRef = firebase.database().ref("messages");
+    /*const messageRef = firebase.database().ref("messages");
     const newMessageRef = messageRef.push();
     await newMessageRef.set({
         sender: "User",
         message: message,
         timestamp: getFormattedDateAndTime(),
-    });
+    });*/
 
     // Use the generateChatbotResponse function to get a response
     const response = generateChatbotResponse(message);
 
-    const newResponseRef = messageRef.push();
+    /*const newResponseRef = messageRef.push();
     await newResponseRef.set({
         sender: "Chatbot",
         message: response,
         timestamp: getFormattedDateAndTime(),
-    });
+    });*/
 
     addMessageToChat("Chatbot", response);
 }
